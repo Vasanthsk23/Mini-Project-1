@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee</title>
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <nav class="navbar navbar-inverse"><div class="container-fluid"><a class="navbar-brand" href="#">User Management App</a></div></nav>
+</head>
+<body class="container">
+
+<h1 class="text-center">Users List</h1>
+<a th:href="@{/addnew}" class="col-lg-1 btn btn-primary">Add User</a>
+
+<div id="content" class="row">
+<table class="table">
+    <thead>
+    <tr>
+        <th>User First Name</th>
+        <th>User Last Name</th>
+        <th>User Email ID</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+<tbody>
+<tr th:each="employee:${allemplist}">
+    <td th:text="${employee.firstName}"></td>
+    <td th:text="${employee.lastName}"></td>
+    <td th:text="${employee.emailId}"></td>
+
+    <td> <a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}"
+            class="btn btn-primary">Update</a>
+        <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}"
+           class="btn btn-danger">Delete</a>
+        <a th:href="@{/showUser/{id}(id=${employee.id})}" class="btn btn-info">View</a>
+    </td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
