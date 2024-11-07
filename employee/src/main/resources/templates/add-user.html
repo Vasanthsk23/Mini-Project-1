@@ -10,6 +10,11 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
 </head>
 <body>
 <form action="#" th:action="@{/save}" th:object="${employee}"
@@ -22,6 +27,8 @@
         <div class="form-group">
             <label for="firstName">First Name</label>
             <input type="text" class="form-control" id="firstName" th:field="*{firstName}" />
+            <p  th:if="${#fields.hasErrors('firstName')}" class="error">
+                Enter your FirstName</p>
         </div>
 
         <div class="form-group">
@@ -32,11 +39,15 @@
         <div class="form-group">
             <label for="emailId">Email ID</label>
             <input type="email" class="form-control" id="emailId" th:field="*{emailId}" />
+            <p  th:if="${#fields.hasErrors('emailId')}" class="error">
+                Invalid EmailID</p>
         </div>
 
         <div class="form-group">
             <label for="age">Age</label>
             <input type="number" class="form-control" id="age" th:field="*{age}" min="18" max="60" />
+            <p  th:if="${#fields.hasErrors('age')}" class="error">
+                Invalid Age</p>
         </div>
         <div class="form-group">
             <label for="salary">Salary</label>
